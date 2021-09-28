@@ -1,12 +1,16 @@
 package com.cogent.productmanagement.service;
 
+import java.io.IOException;
+
+import com.cogent.productmanagement.exception.InvalidProductIdException;
 import com.cogent.productmanagement.model.Product;
 import com.cogent.productmanagement.repository.ProductRepository;
+import com.cogent.productmanagement.repository.ProductRepositoryALImpl;
 import com.cogent.productmanagement.repository.ProductRepositoryImpl;
 
 public class ProductServiceImpl implements ProductService {
 	
-	ProductRepository productRepository = ProductRepositoryImpl.getInstance();
+	ProductRepository productRepository = ProductRepositoryALImpl.getInstance();
 	
 	private static ProductService productService;
 	
@@ -29,13 +33,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public String updateProduct(String productId, Product product) {
+	public String updateProduct(String productId, Product product) throws InvalidProductIdException, IOException {
 		// TODO Auto-generated method stub
 		return productRepository.updateProduct(productId, product);
 	}
 
 	@Override
-	public Product getProductById(String Id) {
+	public Product getProductById(String Id) throws InvalidProductIdException, IOException {
 		// TODO Auto-generated method stub
 		return productRepository.getProductById(Id);
 	}
@@ -47,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public String deleteProductById(String Id) {
+	public String deleteProductById(String Id) throws InvalidProductIdException, IOException {
 		// TODO Auto-generated method stub
 		return productRepository.deleteProductById(Id);
 	}
